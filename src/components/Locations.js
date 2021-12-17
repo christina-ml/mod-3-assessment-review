@@ -5,7 +5,7 @@ class Locations extends Component{
         super();
         this.state = {
             locations: [],
-            displayLocations: false
+            display: false
         }
     }
 
@@ -21,7 +21,7 @@ class Locations extends Component{
 
     handleToggleLocations=()=>{
         this.setState({
-            displayLocations: !this.state.displayLocations,
+            display: !this.state.display,
         })
     }
 
@@ -33,8 +33,8 @@ class Locations extends Component{
         return(
             <div className="locations">
                 <h1>List of Locations</h1>
-                <button onClick={this.handleToggleLocations}>{this.state.displayLocations ? "Hide" : "Show"} Locations</button>
-                { this.state.displayLocations &&
+                <button onClick={this.handleToggleLocations}>{this.state.display ? "Hide" : "Show"} Locations</button>
+                { this.state.display &&
                     <ul>
                         { locationsElArr }
                     </ul>
