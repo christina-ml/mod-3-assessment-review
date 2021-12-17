@@ -1,47 +1,36 @@
-import { Component } from "react";
+import { Component, useState, useEffect } from "react";
 
-class Locations extends Component{
-    constructor(){
-        super();
-        this.state = {
-            locations: [],
-            display: false
-        }
-    }
+const Locations=()=>{
+    const [ locations, setLocations, ] = useState([]);
+    const [ display, setDisplay ] = useState(false)
 
-    componentDidMount(){
+    useEffect(()=>{
         fetch("https://ghibliapi.herokuapp.com/locations")
             .then(res=>res.json())
             .then(data=>{
-                this.setState({
-                    locations: data
-                })
+                setLocations(data)
             })
+    }, []);
+
+    const handleToggleLocations=()=>{
+        setDisplay(!display)
     }
 
-    handleToggleLocations=()=>{
-        this.setState({
-            display: !this.state.display,
-        })
-    }
+    let locationsElArr = locations.map((location)=>{
+        return <li>{location.name}</li>
+    })
 
-    render(){
-        let locationsElArr = this.state.locations.map((location)=>{
-            return <li>{location.name}</li>
-        })
-
-        return(
-            <div className="locations">
+    return(
+        <div className="locations">
                 <h1>List of Locations</h1>
-                <button onClick={this.handleToggleLocations}>{this.state.display ? "Hide" : "Show"} Locations</button>
-                { this.state.display &&
+                <button onClick={handleToggleLocations}>{display ? "Hide" : "Show"} Locations</button>
+                { display &&
                     <ul>
                         { locationsElArr }
                     </ul>
                 }
             </div>
-        )
-    }
+    )
 }
 
 export default Locations;
