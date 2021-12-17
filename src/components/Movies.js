@@ -12,9 +12,11 @@ const Movies=()=>{
             })
     }, [])
 
-    const handleDropdownChange=(e)=>{
-        console.log(e.target.value)
-        // setSelectedMovie()
+    const handleDropdownChange=(event)=>{
+        let foundMovie = movies.find((movie)=>{
+            return movie.title === event.target.value
+        })
+        setSelectedMovie(foundMovie);
     }
 
     let optionElArr = movies.map((movie)=>{
@@ -27,6 +29,11 @@ const Movies=()=>{
                 <option></option>
                 { optionElArr }
             </select>
+
+            <div>Title: {selectedMovie.title}</div>
+            <div>Release Date: {selectedMovie.release_date}</div>
+            <div>Description: {selectedMovie.description}</div>
+
         </div>
     )
 }
