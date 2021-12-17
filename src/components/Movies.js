@@ -16,7 +16,8 @@ const Movies=()=>{
         let foundMovie = movies.find((movie)=>{
             return movie.title === event.target.value
         })
-        setSelectedMovie(foundMovie);
+        // if truthy, set it as an empty object again.
+        setSelectedMovie(foundMovie || {});
     }
 
     let optionElArr = movies.map((movie)=>{
@@ -25,14 +26,19 @@ const Movies=()=>{
 
     return(
         <div className="movies">
+            <h1>Select a Movie</h1>
             <select onChange={handleDropdownChange}>
                 <option></option>
                 { optionElArr }
             </select>
 
-            <div>Title: {selectedMovie.title}</div>
-            <div>Release Date: {selectedMovie.release_date}</div>
-            <div>Description: {selectedMovie.description}</div>
+            { selectedMovie.title && 
+                <div>
+                    <h3>Title: {selectedMovie.title}</h3>
+                    <div>Release Date: {selectedMovie.release_date}</div>
+                    <div>Description: {selectedMovie.description}</div>
+                </div>
+            }
 
         </div>
     )
