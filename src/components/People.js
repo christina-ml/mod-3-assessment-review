@@ -25,7 +25,7 @@ const People=()=>{
     }
 
     return (
-        <div>
+        <div className="people">
             <div>Search for a Person</div>
             <input 
                 placeholder="FInd Your Person"
@@ -34,7 +34,6 @@ const People=()=>{
                 onChange={ handlePersonInput }
             />
             <button onClick={ handleSubmit }>Submit</button>
-
             { foundPerson && 
                 <div>
                     <h3>Name: {foundPerson.name}</h3>
@@ -47,7 +46,6 @@ const People=()=>{
                     <h3>Not Found</h3>
                 </div>
             }
-
         </div>
     )
 }
