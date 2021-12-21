@@ -26,9 +26,9 @@ const People=()=>{
 
     return (
         <div className="people">
-            <div>Search for a Person</div>
+            <h1>Search for a Person</h1>
             <input 
-                placeholder="FInd Your Person"
+                placeholder="Find Your Person"
                 type="text"
                 value={ personInput }
                 onChange={ handlePersonInput }
